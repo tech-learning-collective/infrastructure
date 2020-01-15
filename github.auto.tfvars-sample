@@ -1,0 +1,46 @@
+#
+# Configuration file for GitHub resources.
+#
+
+github_organization = "YOUR_GITHUB_ORGANIZATION_NAME"
+
+# Members of the GitHub organization.
+github_members = {
+    # Username   = Role in GitHub organization
+    exampleadmin = "admin"
+    exampleuser  = "member"
+}
+
+# GitHub repositories to manage.
+#
+# Each item in this map describe a `github_repository` resource
+# For details, see:
+#   https://www.terraform.io/docs/providers/github/r/repository.html
+#
+# Each attribute is required, but you can set its value to
+# the special `null` type to represent having not set it.
+# See also this feature request for Terraform core:
+#   https://github.com/hashicorp/terraform/issues/19898
+github_repositories = {
+
+    "example-repository-name" = {
+        description  = "Example repository description."
+        homepage_url = "https://example.com/"
+        has_issues   = null
+        has_wiki     = null
+        # Empty list means "no topics."
+        topics       = []
+    }
+
+    "example-second-repo" = {
+        description  = "A second repository, with a wiki and topics."
+        homepage_url = null
+        has_issues   = null
+        has_wiki     = true
+        topics       = [
+            "example-topic-1",
+            "example-topic-2",
+        ]
+    }
+
+}

@@ -1,0 +1,20 @@
+#
+# Common input variables.
+#
+
+# GitHub API personal access token.
+# Create an API token at:
+#     https://github.com/settings/tokens
+github_token = "YOUR_GITHUB_API_PERSONAL_ACCESS_TOKEN_HERE"
+
+# Cloudflare API token. Learn more at:
+#   https://support.cloudflare.com/hc/en-us/articles/200167836-Managing-API-Tokens-and-Keys#12345680
+cloudflare_api_token = "YOUR_CLOUDFLARE_API_TOKEN_HERE"
+
+# The programmatic Account ID of the Cloudflare account that
+# owns the Cloudflare Zone (domain) to manage. This is shown
+# in the right-hand sidebar on the main Zone dashboard page.
+cloudflare_account_id = "CLOUDFLARE_ACCOUNT_ID_OF_ZONE_OWNER"
+
+# Main domain name of the organization.
+domain = "example.com"
