@@ -36,3 +36,8 @@ This means you must have (optionally, free) accounts with these providers to mak
     ```sh
     terraform apply
     ```
+1. If you'd like to store this code in your own organization, configure a Git remote in your clone to point at your organization's `infrastructure` repository, which will have been created by the above `terraform apply` invocation, and then `git push` this code to it:
+    ```sh
+    git remote add $YOUR_GIT_REMOTE_NAME git@github.com:${YOUR_ORGANIZATION_NAME}/infrastructure.git
+    git push $YOUR_GIT_REMOTE_NAME master
+    ```

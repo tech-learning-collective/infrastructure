@@ -26,3 +26,12 @@ resource "github_repository" "repos" {
     has_wiki     = each.value.has_wiki
     topics       = each.value.topics
 }
+
+resource "github_repository" "infrastructure" {
+    name        = "infrastructure"
+    description = "Terraform configurations for the organization's infrastructure."
+
+    lifecycle {
+        prevent_destroy = true
+    }
+}
