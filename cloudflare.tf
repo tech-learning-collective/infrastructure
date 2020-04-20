@@ -7,6 +7,73 @@ resource "cloudflare_zone" "main" {
     plan = "free"
 }
 
+#
+# Cloudflare DNS.
+#
+# GitHub Pages provides four redundant IP addresses. Use all of them.
+#
+resource "cloudflare_record" "gh_pages_1" {
+    zone_id = cloudflare_zone.main.id
+    type    = "A"
+    name    = "@"
+    value   = "185.199.108.153"
+    proxied = true
+}
+
+resource "cloudflare_record" "gh_pages_2" {
+    zone_id = cloudflare_zone.main.id
+    type    = "A"
+    name    = "@"
+    value   = "185.199.109.153"
+    proxied = true
+}
+
+resource "cloudflare_record" "gh_pages_3" {
+    zone_id = cloudflare_zone.main.id
+    type    = "A"
+    name    = "@"
+    value   = "185.199.110.153"
+    proxied = true
+}
+
+resource "cloudflare_record" "gh_pages_4" {
+    zone_id = cloudflare_zone.main.id
+    type    = "A"
+    name    = "@"
+    value   = "185.199.111.153"
+    proxied = true
+}
+
+# We don't use the `www` subdomain, so we only have one record for it.
+resource "cloudflare_record" "gh_pages_www_1" {
+    zone_id = cloudflare_zone.main.id
+    type    = "A"
+    name    = "www"
+    value   = "185.199.108.153"
+    proxied = true
+}
+
+# Custom Cloudflare DNS rules.
+resource "cloudflare_record" "hacker-trivia-night" {
+    zone_id = cloudflare_zone.main.id
+    type    = "CNAME"
+    name    = "hacker-trivia-night"
+    value   = "${var.github_organization}.github.io"
+    proxied = true
+}
+
+# Hackers Next Door
+resource "cloudflare_record" "hnd" {
+    zone_id = cloudflare_zone.main.id
+    type    = "CNAME"
+    name    = "hnd"
+    value   = "${var.github_organization}.github.io"
+    proxied = true
+}
+
+#
+# Cloudflare Page Rules.
+#
 resource "cloudflare_page_rule" "forward_www" {
     zone_id  = cloudflare_zone.main.id
     target   = "www.${var.domain}/*"
