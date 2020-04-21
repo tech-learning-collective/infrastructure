@@ -1,0 +1,12 @@
+#
+# Supplemental configuration for Cloudflare resources.
+#
+
+# Additional Cloudflare DNS records.
+cloudflare_dns_records = {
+    "example" = {           # Name of DNS record.
+        type    = "A"       # Desired DNS resource record type.
+        value   = "1.2.3.4" # Desired record value, e.g., IP address.
+        proxied = true      # Whether or not to proxy via Cloudflare.
+    }
+}

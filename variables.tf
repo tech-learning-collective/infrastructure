@@ -58,3 +58,14 @@ variable "github_repositories" {
         })
     )
 }
+
+variable "cloudflare_dns_records" {
+    description = "Cloudflare DNS resource records."
+    type        = map(
+        object({
+            type    = string
+            value   = string
+            proxied = bool
+        })
+    )
+}

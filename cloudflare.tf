@@ -54,21 +54,15 @@ resource "cloudflare_record" "gh_pages_www_1" {
 }
 
 # Custom Cloudflare DNS rules.
-resource "cloudflare_record" "hacker-trivia-night" {
-    zone_id = cloudflare_zone.main.id
-    type    = "CNAME"
-    name    = "hacker-trivia-night"
-    value   = "${var.github_organization}.github.io"
-    proxied = true
-}
+resource "cloudflare_record" "rrs" {
+    for_each = var.cloudflare_dns_records
 
-# Hackers Next Door
-resource "cloudflare_record" "hnd" {
-    zone_id = cloudflare_zone.main.id
-    type    = "CNAME"
-    name    = "hnd"
-    value   = "${var.github_organization}.github.io"
-    proxied = true
+    name     = each.key
+    type     = each.value.type
+    value    = each.value.value
+    proxied  = each.value.proxied
+
+    zone_id  = cloudflare_zone.main.id
 }
 
 #
@@ -86,6 +80,8 @@ resource "cloudflare_page_rule" "forward_www" {
     }
 }
 
+# TODO: Move this into a vars file, for now.
+#
 # The SEC101 placement test has a question regarding HTML comments.
 # These should be retained in the output, so we cannot minify the page
 # on which these comments exist via Cloudflare like we do for the rest

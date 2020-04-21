@@ -4,3 +4,4 @@
 crash.log
 terraform.tfvars
 github.auto.tfvars
+cloudflare.auto.tfvars
