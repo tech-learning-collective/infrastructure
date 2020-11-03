@@ -71,7 +71,7 @@ resource "cloudflare_record" "rrs" {
 resource "cloudflare_page_rule" "forward_www" {
     zone_id  = cloudflare_zone.main.id
     target   = "www.${var.domain}/*"
-    priority = 1
+    priority = 2
     actions {
         forwarding_url {
             url         = "https://${var.domain}/$1"
@@ -89,7 +89,7 @@ resource "cloudflare_page_rule" "forward_www" {
 resource "cloudflare_page_rule" "sec101_placement_test" {
     zone_id  = cloudflare_zone.main.id
     target   = "${var.domain}/courses/sec101*"
-    priority = 2
+    priority = 3
     actions {
         minify {
             html = "off"

@@ -55,6 +55,7 @@ variable "github_repositories" {
             has_issues   = bool
             has_wiki     = bool
             topics       = list(string)
+            visibility   = string
         })
     )
 }
